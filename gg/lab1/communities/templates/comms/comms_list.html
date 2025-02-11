@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-{% load static %}
-
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="{% static 'js/hello.js' %}"></script>
-    <title>Сообщества</title>
-</head>
-<body>
+{% extends 'layout.html' %} {% block title %} Сообщества {% endblock %}
+{% block content %}
+<section>
     <h1>Сообщества</h1>
-</body>
-</html>
+
+    {% for comm in comms %}
+    <article class="comm">
+        <h2>
+            <a href="{%  url 'comms:page' slug=comm.slug %}"> {{ comm.name }} </a>
+        </h2>
+        <p class="date">{{ comm.date }}</p>
+        <p class="txt">{{ comm.description }}</p>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}
